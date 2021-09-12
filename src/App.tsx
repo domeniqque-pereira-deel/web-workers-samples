@@ -40,34 +40,47 @@ function App() {
         </button>
       </div>
 
-      <button
-        onClick={async () => {
-          setState('loading');
-          const worker = new Worker('./worker', { name: 'runBigTaskWorker', type: 'module' });
-          const { runBigTask } = wrap<import('./worker').RunBigTaskWorker>(worker);
-          setState(await runBigTask(50000000));
-        }}
-      >
-        Web Worker
-      </button>
+      <h2>Run big job ⛏</h2>
 
-      <button
-        onClick={() => {
-          setState('🏃 loading');
-          setState(runBigTask(50000000));
-        }}
-      >
-        Sync on main thread
-      </button>
+      <div className="buttonContainer">
+        <button
+          onClick={async () => {
+            setState('loading');
+            const worker = new Worker('./worker', { name: 'runBigTaskWorker', type: 'module' });
+            const { runBigTask } = wrap<import('./worker').RunBigTaskWorker>(worker);
+            setState(await runBigTask(50000000));
+          }}
+        >
+          on Web Worker
+        </button>
 
+        <span>Run big job in separated thread. It can't affect the user experience 😇</span>
+      </div>
+
+      <div className="buttonContainer">
+        <button
+          onClick={() => {
+            setState('🏃 loading');
+            setState(runBigTask(50000000));
+          }}
+        >
+          Sync, on main thread
+        </button>
+
+        <span>Execute de big job as a normal (synchronous) function, on the main thread. It can block the UI 😦</span>
+      </div>
+
+      <div className="buttonContainer">
       <button
         onClick={async () => {
           setState('loading');
           setState(await runAsyncBigTask(50000000));
         }}
       >
-        Async on main thread
+        Async, on main thread
       </button>
+      <span>Try to execute the big task as an asynchronous code. The main thread will jump into different jobs while finishing any one. But this job is very expensive. So, this can block the UI also. 😨</span>
+      </div>
 
       <p>{state}</p>
     </div>

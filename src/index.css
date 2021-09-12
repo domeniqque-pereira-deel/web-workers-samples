@@ -12,6 +12,22 @@ h1 {
   font-size: 3rem;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  color: #f8f8f8;
+  font-size: 1.8rem;
+}
+
+button {
+  font-size: 1.2rem;
+  display: block;
+  cursor: pointer;
+}
+
+
 .container {
   height: 100vh;
   margin: 0;
@@ -20,6 +36,27 @@ h1 {
   background: linear-gradient(132deg, #e73c7e, #591BC5, #212335);
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.buttonContainer button {
+  white-space: nowrap;
+}
+
+.buttonContainer span {
+  font-size: 1rem;
+  margin-left: 1rem;
+  transition: all 500ms ease;
+  opacity: 0;
+}
+
+.buttonContainer:hover span {
+  opacity: 1;
 }
 
 @keyframes gradient {
@@ -50,14 +87,3 @@ h1 {
   font-size: 0.8rem;
 }
 
-p {
-  color: #f8f8f8;
-  font-size: 1.8rem;
-}
-
-button {
-  font-size: 1.2rem;
-  display: block;
-  margin: 1rem 0;
-  cursor: pointer;
-}
