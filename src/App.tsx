@@ -54,7 +54,7 @@ function App() {
           on Web Worker
         </button>
 
-        <span>Run big job in separated thread. It can't affect the user experience 😇</span>
+        <span>Run big job in separated thread. It can't block the UI. The user will thank 😇</span>
       </div>
 
       <div className="buttonContainer">
