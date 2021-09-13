@@ -67,19 +67,19 @@ function App() {
           Sync, on main thread
         </button>
 
-        <span>Execute de big job as a normal (synchronous) function, on the main thread. It can block the UI 😦</span>
+        <span>Execute big job as a normal (synchronous) function, on the main thread. It can block the UI 😦</span>
       </div>
 
       <div className="buttonContainer">
-      <button
-        onClick={async () => {
-          setState('loading');
-          setState(await runAsyncBigTask(50000000));
-        }}
-      >
-        Async, on main thread
-      </button>
-      <span>Try to execute the big task as an asynchronous code. The main thread will jump into different jobs while finishing any one. But this job is very expensive. So, this can block the UI also. 😨</span>
+        <button
+          onClick={async () => {
+            setState('loading');
+            setState(await runAsyncBigTask(50000000));
+          }}
+        >
+          Async, on main thread
+        </button>
+        <span>Try to execute the big task as an asynchronous code (using async). The main thread will jump into different jobs while finishing any one. But this job is very expensive. So, this can block the UI also. 😨</span>
       </div>
 
       <p>{state}</p>
