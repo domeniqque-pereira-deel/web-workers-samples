@@ -41,20 +41,17 @@ function App() {
       </div>
 
       <h2>Run big job ⛏</h2>
-
+      
       <div className="buttonContainer">
         <button
           onClick={async () => {
             setState('loading');
-            const worker = new Worker('./worker', { name: 'runBigTaskWorker', type: 'module' });
-            const { runBigTask } = wrap<import('./worker').RunBigTaskWorker>(worker);
-            setState(await runBigTask(50000000));
+            setState(await runAsyncBigTask(50000000));
           }}
         >
-          on Web Worker
+          Async, on main thread
         </button>
-
-        <span>Run big job in separated thread. It can't block the UI. The user will thank 😇</span>
+        <span>Try to execute the big task as an asynchronous code (using async). The main thread will jump into different jobs while finishing any one. But this job is very expensive. So, this can block the UI also. 😨</span>
       </div>
 
       <div className="buttonContainer">
@@ -74,12 +71,15 @@ function App() {
         <button
           onClick={async () => {
             setState('loading');
-            setState(await runAsyncBigTask(50000000));
+            const worker = new Worker('./worker', { name: 'runBigTaskWorker', type: 'module' });
+            const { runBigTask } = wrap<import('./worker').RunBigTaskWorker>(worker);
+            setState(await runBigTask(50000000));
           }}
         >
-          Async, on main thread
+          on Web Worker
         </button>
-        <span>Try to execute the big task as an asynchronous code (using async). The main thread will jump into different jobs while finishing any one. But this job is very expensive. So, this can block the UI also. 😨</span>
+
+        <span>Run big job in separated thread. It can't block the UI. The user will thank 😇</span>
       </div>
 
       <p>{state}</p>
