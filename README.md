@@ -1,10 +1,10 @@
 # Web Worker Samples
 
-Small examples of how web workers can help an application improve its performance.
+Some jobs on web can block the main UI thread, its produce a bad user experience. 
 
-Some jobs on web can block the main UI thread, its produce a bad smell experience.
+Here I bring some examples of how web workers can help an application to improve its performance.
 
-Try enter on Live Preview and interact with counter. After, click to run a big job.
+Try enter on Live Preview and interact with counter. After, try click on Run Big Job.
 
 ## Live Preview
 
